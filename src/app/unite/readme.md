@@ -7,7 +7,8 @@ This librabry is for Angular (2+) projects to build a list from the data passed 
 ```
 npm install @appcarvers/ngx-unitelist --save
 ```
-To use pagination and filters of unitelist, you will also need to install few dependencies as listed below -
+To use pagination and filters of unitelist, you will also need to install few dependencies as listed below
+
 ```
 npm install ngx-bootstrap --save
 npm install ng2-select --save
@@ -20,9 +21,7 @@ Simply first import the module in your app.module.ts as shown below
 
 ```
 import { UniteModule } from '@appcarvers/ngx-unitelist/unite.module';
-
 imports : [UniteModule]
-
 ```
 
 Now, pass proper configuration so to render pagination, filters, table-view. You will also get various callback like pageChanged and filterChanged so that you can update the data based on changes.
@@ -31,30 +30,30 @@ Now, pass proper configuration so to render pagination, filters, table-view. You
 
 user.component.html
 ```
-    <ngx-unite-list
-        [data]="usersData"
-        [tableHeaders] = 'usersHeaders'
-        [totalPages] = 'userTotalPages'
-        [currentPage] = 'userCurrentPage'
-        [filters] = 'userFilters'
-        [searchBox] = 'true'
-        (pageChanged)='checkPageChanged($event)'
-        table-class = 'table-bordered table'
-    > </ngx-unite-list>
+<ngx-unite-list
+    [data]="usersData"
+    [tableHeaders] = 'usersHeaders'
+    [totalPages] = 'userTotalPages'
+    [currentPage] = 'userCurrentPage'
+    [filters] = 'userFilters'
+    [searchBox] = 'true'
+    (pageChanged)='checkPageChanged($event)'
+    table-class = 'table-bordered table'
+> </ngx-unite-list>
 ```
 
 user.component.ts
 ```
-    import { Component, OnInit } from '@angular/core';
-    import { FakedataService } from '../fakedata.service';
+import { Component, OnInit } from '@angular/core';
+import { FakedataService } from '../fakedata.service';
 
-    @Component({
-    selector: 'app-userlist',
-    templateUrl: './userlist.component.html',
-    styleUrls: ['./userlist.component.css'],
-    providers : [FakedataService]
-    })
-    export class UserlistComponent implements OnInit {
+@Component({
+selector: 'app-userlist',
+templateUrl: './userlist.component.html',
+styleUrls: ['./userlist.component.css'],
+providers : [FakedataService]
+})
+export class UserlistComponent implements OnInit {
 
     usersData;
     usersHeaders;
@@ -72,16 +71,16 @@ user.component.ts
                             ];
 
         this.userFilters =  [
-                             {
-                               label     : 'Filter 1',
-                               filterId  : 'filter-1',
-                               options   : [{id: 'a', text: 'Alpha'},{id: 'b', text: 'Beta'},{id: 'c', text: 'Gamma'},]
-                             },
-                             {
-                               label : 'Filter 2',
-                               filterId : 'filter-2',
-                               options : [{id: 'a', text: 'xyz'},{id: 'b', text: 'abc'},{id: 'c', text: 'syz'},]
-                             } 
+                                {
+                                label     : 'Filter 1',
+                                filterId  : 'filter-1',
+                                options   : [{id: 'a', text: 'Alpha'},{id: 'b', text: 'Beta'},{id: 'c', text: 'Gamma'},]
+                                },
+                                {
+                                label : 'Filter 2',
+                                filterId : 'filter-2',
+                                options : [{id: 'a', text: 'xyz'},{id: 'b', text: 'abc'},{id: 'c', text: 'syz'},]
+                                } 
                             ];
 
         this.loadUsers();
