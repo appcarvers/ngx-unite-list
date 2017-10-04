@@ -38,7 +38,10 @@ user.component.html
     [filters] = 'userFilters'
     [searchBox] = 'true'
     (pageChanged)='checkPageChanged($event)'
-    table-class = 'table-bordered table'
+    (filterChanged)='jobsFilterChanged($event)'
+    (searchInput)='jobsSearched($event)'
+    table-class='table-bordered table'
+    filter-class='my-col col-xs-2'
 > </ngx-unite-list>
 ```
 
