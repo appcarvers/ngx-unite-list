@@ -1,6 +1,6 @@
 # ngx-unitelist
 
-This librabry is for Angular (2+) projects to build a list from the data passed and provide pagination and filters and their callbacks after passing a configuration properly
+This librabry is for Angular (2+) projects to build a list from passed data and provide pagination and filters and their callbacks after proper configuration.
 
 ## Installing
 
