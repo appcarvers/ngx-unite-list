@@ -1,0 +1,64 @@
+<div>
+
+    <div class="datatable-pagination" *ngIf="_totalPages.length && currentPage">
+      <ul class="pagination">
+          <li (click)="pageChange('first')"><span>&laquo;</span></li>
+          <li (click)="pageChange('prev')"><span>&#60;</span></li>
+          <li (click)="pageChange(i)" *ngFor="let page of _totalPages; let i = index" class="{{ i+1 == currentPage ? 'active' : '' }}"><span href="#">{{i + 1}}</span></li>
+          <li (click)="pageChange('nxt')"><span>&#62;</span></li>
+          <li (click)="pageChange('last')"><span>&raquo;</span></li>
+      </ul>
+    </div>
+
+    <div class="filters-cover" *ngIf="_filters.length" class="my-filters">
+
+      <div *ngIf="searchBox" [class]="filterBlockClass">
+        <div class="ui-select-container">
+          <input type="text" placeholder="Search" (keydown)="searchValueChanged($event)">
+        </div>
+      </div>
+
+      <div *ngFor='let thisFilter of _filters' [class]="filterBlockClass">
+        <ng-container [ngSwitch]="thisFilter.type">
+
+          <ng-container *ngSwitchCase="'date'">
+            <div>
+              <input type="text" class="form-control" bsDatepicker [placeholder]="thisFilter.label" (bsValueChange)="dateChanged($event, thisFilter.name)" [bsValue]="thisFilter.value" value="{{ thisFilter.value | date:'MM/dd/yyyy' }}">
+            </div>
+          </ng-container>
+
+          <ng-container *ngSwitchDefault>
+            <ng-select
+                placeholder = "{{thisFilter.label}}"
+                [allowClear]="true"
+                [items]="thisFilter.options"
+                [active]="thisFilter.value"
+                (selected)="filterSelected($event, thisFilter.name)"
+                (removed) ="filterRemoved($event, thisFilter.name)"
+                >
+            </ng-select>
+
+          </ng-container>
+
+        </ng-container>
+      </div>
+
+      <div class="clear"></div>
+    </div>
+
+    <div *ngIf="displayTable">
+        <table [class]="tableBlockClass">
+          <thead>
+            <tr>
+              <th *ngFor="let headTitle of tableHeaders">{{headTitle.label}}</th>
+            </tr>
+          </thead>
+          <tbody #tableBody>
+            <tr *ngFor="let tData of tableData">
+              <td *ngFor="let colIdentifier of tableHeaders" [innerHTML]= "tData | displayDataTableRow : colIdentifier">John</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+</div>

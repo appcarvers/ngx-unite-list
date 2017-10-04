@@ -1,0 +1,11 @@
+
+<ngx-unite-list
+  [data]="usersData"
+  [tableHeaders] = 'usersHeaders'
+  [totalPages] = 'userTotalPages'
+  [currentPage] = 'userCurrentPage'
+  [filters] = 'userFilters'
+  [searchBox] = 'true'
+  (pageChanged)='checkPageChanged($event)'
+  table-class = 'table-bordered table'
+> </ngx-unite-list>
