@@ -25,16 +25,21 @@ export class UserlistComponent implements OnInit {
                         ];
 
     this.userFilters =  [
-                          // {
-                          //   label     : 'Filter 1',
-                          //   filterId  : 'filter-1',
-                          //   options   : [{id: 'a', text: 'Alpha'},{id: 'b', text: 'Beta'},{id: 'c', text: 'Gamma'},]
-                          // },
-                          // {
-                          //   label : 'Filter 2',
-                          //   filterId : 'filter-2',
-                          //   options : [{id: 'a', text: 'xyz'},{id: 'b', text: 'abc'},{id: 'c', text: 'syz'},]
-                          // } 
+                          {
+                            label     : 'Filter 1',
+                            name  : 'filter-1',
+                            options   : [{id: 'a', text: 'Alpha'},{id: 'b', text: 'Beta'},{id: 'c', text: 'Gamma'},]
+                          },
+                          {
+                            label : 'Filter 2',
+                            name : 'filter-2',
+                            options : [{id: 'a', text: 'xyz'},{id: 'b', text: 'abc'},{id: 'c', text: 'syz'},]
+                          },
+                          {
+                            label: 'Date',
+                            type: 'date',
+                            name: 'filter-4'
+                          }
                         ]
 
     this.loadUsers();

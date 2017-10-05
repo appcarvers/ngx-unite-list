@@ -3,9 +3,9 @@
     <div class="datatable-pagination" *ngIf="_totalPages.length && currentPage">
       <ul class="pagination">
           <li (click)="pageChange('first')"><span>&laquo;</span></li>
-          <li (click)="pageChange('prev')"><span>&#60;</span></li>
+          <li (click)="pageChange('prev')"><span>&lsaquo;</span></li>
           <li (click)="pageChange(i)" *ngFor="let page of _totalPages; let i = index" class="{{ i+1 == currentPage ? 'active' : '' }}"><span href="#">{{i + 1}}</span></li>
-          <li (click)="pageChange('nxt')"><span>&#62;</span></li>
+          <li (click)="pageChange('nxt')"><span>&rsaquo;</span></li>
           <li (click)="pageChange('last')"><span>&raquo;</span></li>
       </ul>
     </div>
@@ -13,8 +13,8 @@
     <div class="filters-cover" *ngIf="_filters.length" class="my-filters">
 
       <div *ngIf="searchBox" [class]="filterBlockClass">
-        <div class="ui-select-container">
-          <input type="text" placeholder="Search" (keydown)="searchValueChanged($event)">
+        <div class="ui-select-container form-group">
+          <input class="form-control" type="text" placeholder="Search" (keydown)="searchValueChanged($event)">
         </div>
       </div>
 

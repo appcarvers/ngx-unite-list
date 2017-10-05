@@ -28,6 +28,10 @@ export class UnitelistComponent implements OnInit {
   };
   @Input() set filters(value){
     this._filters = value; // [0,1,2,3,4]
+
+    this._filters.forEach(element => {
+      this.myFilterObj.values[element.name] = element.value;
+    });
   };
 
   @Output() pageChanged = new EventEmitter();
@@ -38,6 +42,7 @@ export class UnitelistComponent implements OnInit {
 
   myOptions: Array<any>;
   mySelectValue: Array<string>;
+  myFilterObj = {values : {}, change : {}};
 
   constructor() {
   }
@@ -62,26 +67,33 @@ export class UnitelistComponent implements OnInit {
   }
 
   filterSelected(e, f){
-    var obj = {status : 'selected', filterId : f, value : e.id, text : e.text};
-    this.filterChanged.emit(obj);
+
+    this.myFilterObj.change = {status : 'selected', filterId : f, value : e.id, text : e.text};
+    this.myFilterObj.values[f] = e.id;
+
+    this.filterChanged.emit(this.myFilterObj);
   }
 
   filterRemoved(e,f){
-    var obj = {status : 'removed', filterId : f, value : e.id, text : e.text};
-    this.filterChanged.emit(obj);
+    this.myFilterObj.change = {status : 'removed', filterId : f, value : e.id, text : e.text};
+    this.myFilterObj.values[f] = '';
+
+    this.filterChanged.emit(this.myFilterObj);
   }
 
   dateChanged(e, f){
     if(e)
     {
-      let obj = {status : 'selected', filterId : f, value : e};
-      this.filterChanged.emit(obj);
+      this.myFilterObj.change = {status : 'selected', filterId : f, value : e};
+      this.myFilterObj.values[f] = e;
     }
     else
     {
-      let obj = {status : 'removed', filterId : f, value : ''};
-      this.filterChanged.emit(obj);
+      this.myFilterObj.change = {status : 'removed', filterId : f, value : ''};
+      this.myFilterObj.values[f] = '';
     }
+
+    this.filterChanged.emit(this.myFilterObj);
   }
 
   searchValueChanged(e){
