@@ -2,11 +2,14 @@
 <ngx-unite-list
   [data]="usersData"
   [tableHeaders] = 'usersHeaders'
-  [totalPages] = 'userTotalPages'
-  [currentPage] = 'userCurrentPage'
   [filters] = 'userFilters'
   [searchBox] = 'true'
-  (pageChanged)='checkPageChanged($event)'
   (filterChanged) = 'checkFilterChanged($event)'
   table-class = 'table-bordered table'
 > </ngx-unite-list>
+
+<ngx-unite-pagination
+  [totalPages]  = 'userTotalPages'
+  [currentPage] = 'userCurrentPage'
+  (pageChanged) = 'checkPageChanged($event)'
+></ngx-unite-pagination>

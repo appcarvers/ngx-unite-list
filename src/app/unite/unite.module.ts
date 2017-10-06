@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { displayRowPipe } from './display.row';
 import { UnitelistComponent } from './unitelist/unitelist.component';
+import { UnitepaginationComponent } from './unitepagination/unitepagination.component';
 
 import { SelectModule } from 'ng2-select';
 import { BsDatepickerModule } from 'ngx-bootstrap';
@@ -15,10 +16,12 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
   ],
   declarations: [
     UnitelistComponent,
-    displayRowPipe
+    displayRowPipe,
+    UnitepaginationComponent
   ],
   exports:[
-    UnitelistComponent
+    UnitelistComponent,
+    UnitepaginationComponent
   ]
 })
 export class UniteModule { }

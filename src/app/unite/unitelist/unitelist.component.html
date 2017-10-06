@@ -1,6 +1,6 @@
 <div>
 
-    <div class="datatable-pagination" *ngIf="_totalPages.length && currentPage">
+    <!--<div class="datatable-pagination" *ngIf="_totalPages.length && currentPage">
       <ul class="pagination">
           <li (click)="pageChange('first')"><span>&laquo;</span></li>
           <li (click)="pageChange('prev')"><span>&lsaquo;</span></li>
@@ -8,13 +8,19 @@
           <li (click)="pageChange('nxt')"><span>&rsaquo;</span></li>
           <li (click)="pageChange('last')"><span>&raquo;</span></li>
       </ul>
-    </div>
+    </div>-->
+
+    <ngx-unite-pagination
+      [totalPages]  = 'totalPages'
+      [currentPage] = 'currentPage'
+      (pageChanged) = 'checkPageChanged($event)'
+    ></ngx-unite-pagination>
 
     <div class="filters-cover" *ngIf="_filters.length" class="my-filters">
 
       <div *ngIf="searchBox" [class]="filterBlockClass">
         <div class="ui-select-container form-group">
-          <input class="form-control" type="text" placeholder="Search" (keydown)="searchValueChanged($event)">
+          <input class="form-control" type="text" placeholder="Search" (keyup)="searchValueChanged($event)">
         </div>
       </div>
 

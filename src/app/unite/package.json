@@ -1,11 +1,28 @@
 {
   "name": "@appcarvers/ngx-unitelist",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "",
   "main": "unite.module.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "unite",
+    "unitelist",
+    "list",
+    "appcarvers",
+    "angular",
+    "2",
+    "4",
+    "table",
+    "datatable",
+    "pagination",
+    "filters",
+    "ng-select",
+    "ngx-datatable",
+    "ngx-datatabulate",
+    "datatabulate"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "LGPL-3.0"
 }

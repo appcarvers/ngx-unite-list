@@ -23,9 +23,10 @@ export class UnitelistComponent implements OnInit {
   @Input() set data(value){
     this.tableData = value;
   };
-  @Input() set totalPages(value){
-    this._totalPages = Array(value).fill(1); // [0,1,2,3,4]
-  };
+  // @Input() set totalPages(value){
+  //   this._totalPages = Array(value).fill(1); // [0,1,2,3,4]
+  // };
+  @Input() totalPages;
   @Input() set filters(value){
     this._filters = value; // [0,1,2,3,4]
 
@@ -50,22 +51,6 @@ export class UnitelistComponent implements OnInit {
   ngOnInit() {
   }
 
-  pageChange(newPage){
-    var thisNewPage = newPage;
-
-    if(typeof newPage === 'number')
-    {
-      // just because the pagination value starts from 0 and not 1 :D
-      thisNewPage++;
-    }
-
-    if(thisNewPage != this.currentPage)
-    {
-      var obj = { currentPage : this.currentPage, newPage : thisNewPage };
-      this.pageChanged.emit(obj);
-    }
-  }
-
   filterSelected(e, f){
 
     this.myFilterObj.change = {status : 'selected', filterId : f, value : e.id, text : e.text};
@@ -79,6 +64,10 @@ export class UnitelistComponent implements OnInit {
     this.myFilterObj.values[f] = '';
 
     this.filterChanged.emit(this.myFilterObj);
+  }
+
+  checkPageChanged($e){
+    this.pageChanged.emit($e);
   }
 
   dateChanged(e, f){
@@ -98,6 +87,7 @@ export class UnitelistComponent implements OnInit {
 
   searchValueChanged(e){
     let obj = {keyPressed : e.key, searchVal : e.target.value, keyCode : e.which};
+    console.log(obj);
     this.searchInput.emit(obj);
   }
 }

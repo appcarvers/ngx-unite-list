@@ -1,15 +1,15 @@
 # ngx-unitelist
-
-This librabry is for Angular (2+) projects to build a list from passed data and provide pagination and filters and their callbacks after proper configuration.
+ 
+This library is for Angular (2+) projects to build a list from passed data and provide pagination and filters and their callbacks after proper configuration.
 
 ## Installing
 
-```
+```shell
 npm install @appcarvers/ngx-unitelist --save
 ```
 To use pagination and filters of unitelist, you will also need to install few dependencies as listed below
 
-```
+```shell
 npm install ngx-bootstrap --save
 npm install ng2-select --save
 ```
@@ -19,17 +19,18 @@ npm install ng2-select --save
 
 Simply first import the module in your app.module.ts as shown below
 
-```
+```typescript
 import { UniteModule } from '@appcarvers/ngx-unitelist/unite.module';
 imports : [UniteModule]
 ```
 
-Now, pass proper configuration so to render pagination, filters, table-view. You will also get various callback like pageChanged and filterChanged so that you can update the data based on changes.
+Now, pass proper configuration so as to render pagination, filters, table-view. You will also get various callback like pageChanged and filterChanged so that you can update the data based on changes.
 
-### Code in app.component.html
+##Displying complete uniteList i.e. with pagination, filters, table
+### Code in component.html
 
 user.component.html
-```
+```html
 <ngx-unite-list
     [data]="usersData"
     [tableHeaders] = 'usersHeaders'
@@ -44,9 +45,10 @@ user.component.html
     filter-class='my-col col-xs-2'
 > </ngx-unite-list>
 ```
+### Code in component.ts
 
 user.component.ts
-```
+```typescript
 import { Component, OnInit } from '@angular/core';
 import { FakedataService } from '../fakedata.service';
 
@@ -75,14 +77,14 @@ export class UserlistComponent implements OnInit {
 
         this.userFilters =  [
                                 {
-                                label     : 'Filter 1',
-                                filterId  : 'filter-1',
-                                options   : [{id: 'a', text: 'Alpha'},{id: 'b', text: 'Beta'},{id: 'c', text: 'Gamma'},]
+                                    label     : 'Filter 1',
+                                    name  : 'filter-1',
+                                    options   : [{id: 'a', text: 'Alpha'},{id: 'b', text: 'Beta'},{id: 'c', text: 'Gamma'},]
                                 },
                                 {
-                                label : 'Filter 2',
-                                filterId : 'filter-2',
-                                options : [{id: 'a', text: 'xyz'},{id: 'b', text: 'abc'},{id: 'c', text: 'syz'},]
+                                    label : 'Filter 2',
+                                    name : 'filter-2',
+                                    options : [{id: 'a', text: 'xyz'},{id: 'b', text: 'abc'},{id: 'c', text: 'syz'},]
                                 } 
                             ];
 
@@ -101,13 +103,68 @@ export class UserlistComponent implements OnInit {
     checkPageChanged(e){
         if(typeof e.newPage === 'number')
         {
-        this.loadUsers(e.newPage);
+            this.loadUsers(e.newPage);
         }
     }
 
     checkFilterChanged(e){
         console.log('filter changed event captuire ', e);
     }
+}
+
+```
+
+
+##Displying Pagination separately without unitelist or filters
+### Code in component.html
+
+user.component.html
+```html
+<ngx-unite-pagination
+    [totalPages] = 'userTotalPages'
+    [currentPage] = 'userCurrentPage'
+    (pageChanged)='checkPageChanged($event)'
+> </ngx-unite-pagination>
+```
+### Code in component.ts
+
+user.component.ts
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { FakedataService } from '../fakedata.service';
+
+@Component({
+selector: 'app-userlist',
+templateUrl: './userlist.component.html',
+styleUrls: ['./userlist.component.css'],
+providers : [FakedataService]
+})
+export class UserlistComponent implements OnInit {
+
+    userTotalPages;
+    userCurrentPage;
+
+    constructor(private _fService : FakedataService) { }
+
+    ngOnInit() {
+        this.loadUsers();
+    }
+
+    loadUsers(pageNo? : number){
+        this._fService.getUsers(pageNo).subscribe(usersData => {
+            this.userTotalPages = usersData['total_pages'];
+            this.userCurrentPage = usersData['page'];
+            console.log(usersData);
+        });
+    }
+
+    checkPageChanged(e){
+        if(typeof e.newPage === 'number')
+        {
+            this.loadUsers(e.newPage);
+        }
+    }
+
 }
 
 ```
