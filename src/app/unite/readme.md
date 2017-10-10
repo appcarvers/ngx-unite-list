@@ -26,7 +26,7 @@ imports : [UniteModule]
 
 Now, pass proper configuration so as to render pagination, filters, table-view. You will also get various callback like pageChanged and filterChanged so that you can update the data based on changes.
 
-##Displying complete uniteList i.e. with pagination, filters, table
+## Displying complete uniteList i.e. with pagination, filters, table
 ### Code in component.html
 
 user.component.html
@@ -115,7 +115,7 @@ export class UserlistComponent implements OnInit {
 ```
 
 
-##Displying Pagination separately without unitelist or filters
+## Displying Pagination separately without unitelist or filters
 ### Code in component.html
 
 user.component.html
@@ -168,5 +168,13 @@ export class UserlistComponent implements OnInit {
 }
 
 ```
+
+## Releases
+
+### v.0.1.2
+
+  - Seperate attribute to assign class for search-box viz. **searchbox-class**.
+  - Removed margin from pagination.
+
 
 ### Docs in progress

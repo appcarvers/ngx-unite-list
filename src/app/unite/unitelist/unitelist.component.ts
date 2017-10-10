@@ -18,8 +18,9 @@ export class UnitelistComponent implements OnInit {
   @Input() currentPage: number;
   @Input() searchBox = false;
   @Input() pagesToShow;
-  @Input('table-class') tableBlockClass = 'table';
-  @Input('filter-class') filterBlockClass = 'my-col col-xs-3';
+  @Input('table-class') tableBlockClass     = 'table';
+  @Input('filter-class') filterBlockClass   = 'my-col col-xs-3';
+  @Input('searchbox-class') searchBoxClass  = 'my-col col-xs-3';
   @Input() set data(value){
     this.tableData = value;
   };
