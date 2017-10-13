@@ -75,8 +75,8 @@ export class UnitepaginationComponent implements OnInit {
     if (this._totalPageCount <= 10)
     {
         // less than 10 total pages so show all
-        this.startPage = 1;
-        this.endPage = this._totalPageCount;
+        this.startPage = 0;
+        this.endPage = this._totalPageCount - 1;
     }
     else
     {
@@ -95,7 +95,6 @@ export class UnitepaginationComponent implements OnInit {
 
     this.endPointStart  = this.startPage - 1;
     this.endPointEnd    = this.endPage + 1;
-    console.log("startpage " + this.startPage + " --- endpage" + this.endPage);
   }
 
 }
