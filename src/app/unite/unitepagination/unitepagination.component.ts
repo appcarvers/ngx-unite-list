@@ -11,6 +11,8 @@ export class UnitepaginationComponent implements OnInit {
   _totalPageCount;
   startPage;
   endPage;
+  endPointStart;
+  endPointEnd;
 
   @Input() currentPage: number;
   @Input() set totalPages(value){
@@ -34,6 +36,29 @@ export class UnitepaginationComponent implements OnInit {
       // just because the pagination value starts from 0 and not 1 :D
       thisNewPage++;
     }
+    else
+    {
+      switch(newPage){
+        case 'first':
+              thisNewPage = 1;
+            break;
+        case 'prev' :
+              if (this.currentPage !== 1)
+              {
+                thisNewPage = this.currentPage -1;
+              }
+            break;
+        case 'nxt' :
+              if (this.currentPage !== this._totalPageCount)
+              {
+                thisNewPage = this.currentPage + 1;
+              }
+            break;
+        case 'last' :
+              thisNewPage = this._totalPageCount;
+            break;
+      }
+    }
 
     if(thisNewPage != this.currentPage)
     {
@@ -41,6 +66,7 @@ export class UnitepaginationComponent implements OnInit {
       this.pageChanged.emit(obj);
     }
 
+    this.currentPage = thisNewPage;
     this.checkingFuntion();
   }
 
@@ -56,16 +82,19 @@ export class UnitepaginationComponent implements OnInit {
     {
         // more than 10 total pages so calculate start and end pages
         if (this.currentPage <= 6) {
-            this.startPage = 1;
-            this.endPage = 10;
+            this.startPage = 1 - 1;
+            this.endPage = 10 - 1;
         } else if (this.currentPage + 4 >= this._totalPageCount) {
-            this.startPage = this._totalPageCount - 9;
-            this.endPage = this._totalPageCount;
+            this.startPage = this._totalPageCount - 9 - 1 ;
+            this.endPage = this._totalPageCount - 1;
         } else {
-            this.startPage = this.currentPage - 5;
-            this.endPage = this.currentPage + 4;
+            this.startPage = this.currentPage - 5 - 1;
+            this.endPage = this.currentPage + 4 - 1;
         }
     }
+
+    this.endPointStart  = this.startPage - 1;
+    this.endPointEnd    = this.endPage + 1;
     console.log("startpage " + this.startPage + " --- endpage" + this.endPage);
   }
 

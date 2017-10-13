@@ -54,14 +54,14 @@ export class UnitelistComponent implements OnInit {
 
   filterSelected(e, f){
 
-    this.myFilterObj.change = {status : 'selected', filterId : f, value : e.id, text : e.text};
+    this.myFilterObj.change = {status : 'selected', name : f, value : e.id, text : e.text};
     this.myFilterObj.values[f] = e.id;
 
     this.filterChanged.emit(this.myFilterObj);
   }
 
   filterRemoved(e,f){
-    this.myFilterObj.change = {status : 'removed', filterId : f, value : e.id, text : e.text};
+    this.myFilterObj.change = {status : 'removed', name : f, value : e.id, text : e.text};
     this.myFilterObj.values[f] = '';
 
     this.filterChanged.emit(this.myFilterObj);
@@ -74,12 +74,12 @@ export class UnitelistComponent implements OnInit {
   dateChanged(e, f){
     if(e)
     {
-      this.myFilterObj.change = {status : 'selected', filterId : f, value : e};
+      this.myFilterObj.change = {status : 'selected', name : f, value : e};
       this.myFilterObj.values[f] = e;
     }
     else
     {
-      this.myFilterObj.change = {status : 'removed', filterId : f, value : ''};
+      this.myFilterObj.change = {status : 'removed', name : f, value : ''};
       this.myFilterObj.values[f] = '';
     }
 

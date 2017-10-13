@@ -16,7 +16,7 @@
       (pageChanged) = 'checkPageChanged($event)'
     ></ngx-unite-pagination>
 
-    <div class="filters-cover" *ngIf="_filters.length" class="my-filters">
+    <div class="filters-cover" *ngIf="_filters.length || searchBox" class="my-filters">
 
       <div *ngIf="searchBox" [class]="searchBoxClass">
         <div class="ui-select-container">

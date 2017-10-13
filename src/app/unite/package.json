@@ -1,6 +1,6 @@
 {
   "name": "@appcarvers/ngx-unitelist",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "",
   "main": "unite.module.ts",
   "scripts": {
@@ -24,5 +24,9 @@
     "datatabulate"
   ],
   "author": "",
-  "license": "LGPL-3.0"
+  "license": "LGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:appcarvers/ngx-unite-list.git"
+  }
 }

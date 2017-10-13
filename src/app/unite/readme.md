@@ -170,9 +170,17 @@ export class UserlistComponent implements OnInit {
 ```
 
 ## Releases
+### v.0.1.5
+  - Pagination page-numbers are now limited to display only 10 pages at once if there are more.
+  - Pagination : First, previous, next, last buttons will now update the pagenumber out of box.
+
+### v.0.1.4
+  - Bug Fixes
+
+### v.0.1.3
+  - Bug Fixes
 
 ### v.0.1.2
-
   - Seperate attribute to assign class for search-box viz. **searchbox-class**.
   - Removed margin from pagination.
 

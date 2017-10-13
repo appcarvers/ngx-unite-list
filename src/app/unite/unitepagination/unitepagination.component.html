@@ -1,8 +1,18 @@
-<div class="datatable-pagination" *ngIf="_totalPages.length && currentPage">
+<div class="datatable-pagination" *ngIf="_totalPages.length && currentPage"> 
   <ul class="pagination">
       <li (click)="pageChange('first')"><span>&laquo;</span></li>
       <li (click)="pageChange('prev')"><span>&lsaquo;</span></li>
-      <li (click)="pageChange(i)" *ngFor="let page of _totalPages; let i = index" class="{{ i+1 == currentPage ? 'active' : '' }}"><span href="#">{{i + 1}}</span></li>
+
+      <ng-container *ngFor="let page of _totalPages; let i = index; ">
+        <li *ngIf="i >= startPage && i <= endPage" (click)="pageChange(i)"  class="{{ i+1 == currentPage ? 'active' : '' }}">
+            <span href="#">{{i + 1}}</span>
+        </li>
+
+        <li *ngIf="i === endPointStart || i === endPointEnd" (click)="pageChange(i)"  class="{{ i+1 == currentPage ? 'active' : '' }}">
+            <span href="#">...</span>
+        </li>
+      </ng-container>
+
       <li (click)="pageChange('nxt')"><span>&rsaquo;</span></li>
       <li (click)="pageChange('last')"><span>&raquo;</span></li>
   </ul>

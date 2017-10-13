@@ -13,7 +13,7 @@ export class UserlistComponent implements OnInit {
   usersHeaders;
   userTotalPages;
   userCurrentPage;
-  userFilters;
+  userFilters = [];
 
   constructor(private _fService : FakedataService) { }
 
@@ -40,7 +40,7 @@ export class UserlistComponent implements OnInit {
                             type: 'date',
                             name: 'filter-4'
                           }
-                        ]
+                        ];
 
     this.loadUsers();
   }
