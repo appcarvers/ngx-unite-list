@@ -9,3 +9,25 @@
 .clear{
     clear: both;
 }
+
+.cancel-span .date-clear{
+    position: absolute;
+}
+
+.date-clear{
+    border: 0;
+    background: none;
+    padding: 2px 5px;
+    top: 20%;
+    right: 18px;
+    margin-bottom: 0;
+}
+.btn-link.date-clear{
+    text-decoration: none !important;
+}
+.btn-link.date-clear:focus{
+    outline:0;
+}
+.filters-cover .input-group .form-control{
+    border-radius:3px;
+}

@@ -19,17 +19,27 @@
     <div class="filters-cover" *ngIf="_filters.length || searchBox" class="my-filters">
 
       <div *ngIf="searchBox" [class]="searchBoxClass">
-        <div class="ui-select-container">
+        <div class="">
           <input class="form-control" type="text" placeholder="Search" (keyup)="searchValueChanged($event)">
+          <!--<span class="cancel-span">
+            <button class="btn btn-link date-clear" type="button">
+                  <i class="glyphicon glyphicon-remove "></i>
+            </button>
+          </span>-->
         </div>
       </div>
 
-      <div *ngFor='let thisFilter of _filters' [class]="filterBlockClass">
+      <div *ngFor='let thisFilter of _filters; let i=index' [class]="filterBlockClass">
         <ng-container [ngSwitch]="thisFilter.type">
 
           <ng-container *ngSwitchCase="'date'">
-            <div>
-              <input type="text" class="form-control" bsDatepicker [placeholder]="thisFilter.label" (bsValueChange)="dateChanged($event, thisFilter.name)" [bsValue]="thisFilter.value" value="{{ thisFilter.value | date:'MM/dd/yyyy' }}">
+            <div class="">
+              <input type="text" class="form-control" bsDatepicker [placeholder]="thisFilter.label" (bsValueChange)="dateChanged($event, thisFilter.name, i)" [bsValue]="thisFilter.value" value="{{ thisFilter.value | date:'MM/dd/yyyy' }}">
+              <span class="cancel-span" *ngIf="myFilterObj.values[thisFilter.name]" (click)="clearDate(thisFilter.name, i)">
+                <button class="btn btn-link date-clear" type="button">
+                      <i class="glyphicon glyphicon-remove "></i>
+                </button>
+              </span>
             </div>
           </ng-container>
 
@@ -39,8 +49,8 @@
                 [allowClear]="true"
                 [items]="thisFilter.options"
                 [active]="thisFilter.value"
-                (selected)="filterSelected($event, thisFilter.name)"
-                (removed) ="filterRemoved($event, thisFilter.name)"
+                (selected)="filterSelected($event, thisFilter.name, i)"
+                (removed) ="filterRemoved($event, thisFilter.name, i)"
                 >
             </ng-select>
 

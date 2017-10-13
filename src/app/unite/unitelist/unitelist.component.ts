@@ -31,6 +31,9 @@ export class UnitelistComponent implements OnInit {
   @Input() set filters(value){
     this._filters = value; // [0,1,2,3,4]
 
+
+    console.log("cjelcomg _filters ", this._filters);
+
     this._filters.forEach(element => {
       this.myFilterObj.values[element.name] = element.value;
     });
@@ -52,15 +55,14 @@ export class UnitelistComponent implements OnInit {
   ngOnInit() {
   }
 
-  filterSelected(e, f){
-
+  filterSelected(e, f, i){
     this.myFilterObj.change = {status : 'selected', name : f, value : e.id, text : e.text};
     this.myFilterObj.values[f] = e.id;
 
     this.filterChanged.emit(this.myFilterObj);
   }
 
-  filterRemoved(e,f){
+  filterRemoved(e, f, i){
     this.myFilterObj.change = {status : 'removed', name : f, value : e.id, text : e.text};
     this.myFilterObj.values[f] = '';
 
@@ -71,14 +73,16 @@ export class UnitelistComponent implements OnInit {
     this.pageChanged.emit($e);
   }
 
-  dateChanged(e, f){
+  dateChanged(e, f, i){
     if(e)
     {
+      this._filters[i].value = e;
       this.myFilterObj.change = {status : 'selected', name : f, value : e};
       this.myFilterObj.values[f] = e;
     }
     else
     {
+      this._filters[i].value = '';
       this.myFilterObj.change = {status : 'removed', name : f, value : ''};
       this.myFilterObj.values[f] = '';
     }
@@ -88,7 +92,12 @@ export class UnitelistComponent implements OnInit {
 
   searchValueChanged(e){
     let obj = {keyPressed : e.key, searchVal : e.target.value, keyCode : e.which};
-    console.log(obj);
     this.searchInput.emit(obj);
+  }
+
+  clearDate(fieldName, index){
+    this._filters[index].value = '';
+    this.myFilterObj.change = {status : 'removed', name : fieldName, value : ''};
+    this.myFilterObj.values[fieldName] = '';
   }
 }
