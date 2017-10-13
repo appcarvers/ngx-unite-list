@@ -170,7 +170,10 @@ export class UserlistComponent implements OnInit {
 ```
 
 ## Releases
-### v.0.1.5
+### v.0.1.7
+  - Added Cancel button for date filters.
+
+### v.0.1.6
   - Pagination bug fixes.
 
 ### v.0.1.5

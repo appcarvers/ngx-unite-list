@@ -1,6 +1,6 @@
 {
   "name": "@appcarvers/ngx-unitelist",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
   "main": "unite.module.ts",
   "scripts": {
