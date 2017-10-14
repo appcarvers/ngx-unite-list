@@ -10,30 +10,28 @@ export class UnitelistComponent implements OnInit {
 
   _totalPages;
   _filters : Array<any> = [];
+  _showSearchRemove = false;
   bsConfig: Partial<BsDatepickerConfig>;
+  searchVal;
 
   @Input() displayTable = true;
   @Input() tableData;
   @Input() tableHeaders;
   @Input() currentPage: number;
   @Input() searchBox = false;
+  @Input() showSearchButtons = true;
   @Input() pagesToShow;
   @Input('table-class') tableBlockClass     = 'table';
   @Input('filter-class') filterBlockClass   = 'my-col col-xs-3';
   @Input('searchbox-class') searchBoxClass  = 'my-col col-xs-3';
+  @Input() totalPages;
   @Input() set data(value){
     this.tableData = value;
   };
-  // @Input() set totalPages(value){
-  //   this._totalPages = Array(value).fill(1); // [0,1,2,3,4]
-  // };
-  @Input() totalPages;
   @Input() set filters(value){
-    this._filters = value; // [0,1,2,3,4]
+    this._filters = value;
 
-
-    console.log("cjelcomg _filters ", this._filters);
-
+    // [0,1,2,3,4]
     this._filters.forEach(element => {
       this.myFilterObj.values[element.name] = element.value;
     });
@@ -42,6 +40,7 @@ export class UnitelistComponent implements OnInit {
   @Output() pageChanged = new EventEmitter();
   @Output() filterChanged = new EventEmitter();
   @Output() searchInput = new EventEmitter();
+  @Output() searchButtonsClicked = new EventEmitter();
 
   @ViewChild('tableBody') checkingTableBody;
 
@@ -93,6 +92,24 @@ export class UnitelistComponent implements OnInit {
   searchValueChanged(e){
     let obj = {keyPressed : e.key, searchVal : e.target.value, keyCode : e.which};
     this.searchInput.emit(obj);
+  }
+
+  searchButtonClicked($e?)
+  {
+    if(this.searchVal)
+    {
+      this.searchButtonsClicked.emit(this.searchVal);
+    }
+    else if($e && $e.key == 'Backspace')
+    {
+      this.searchButtonsClicked.emit(this.searchVal);
+    }
+  }
+
+  searchCancle()
+  {
+    this.searchVal = '';
+    this.searchButtonsClicked.emit('');
   }
 
   clearDate(fieldName, index){

@@ -1,19 +1,15 @@
 .my-col.col-xs-3{
     padding-left: 0;
 }
-
 .my-filters{
     padding-bottom: 10px;
 }
-
 .clear{
     clear: both;
 }
-
 .cancel-span .date-clear{
     position: absolute;
 }
-
 .date-clear{
     border: 0;
     background: none;
@@ -30,4 +26,9 @@
 }
 .filters-cover .input-group .form-control{
     border-radius:3px;
+}
+.custom-search-cancle button{
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
 }

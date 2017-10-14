@@ -1,15 +1,4 @@
 <div>
-
-    <!--<div class="datatable-pagination" *ngIf="_totalPages.length && currentPage">
-      <ul class="pagination">
-          <li (click)="pageChange('first')"><span>&laquo;</span></li>
-          <li (click)="pageChange('prev')"><span>&lsaquo;</span></li>
-          <li (click)="pageChange(i)" *ngFor="let page of _totalPages; let i = index" class="{{ i+1 == currentPage ? 'active' : '' }}"><span href="#">{{i + 1}}</span></li>
-          <li (click)="pageChange('nxt')"><span>&rsaquo;</span></li>
-          <li (click)="pageChange('last')"><span>&raquo;</span></li>
-      </ul>
-    </div>-->
-
     <ngx-unite-pagination
       [totalPages]  = 'totalPages'
       [currentPage] = 'currentPage'
@@ -19,13 +8,21 @@
     <div class="filters-cover" *ngIf="_filters.length || searchBox" class="my-filters">
 
       <div *ngIf="searchBox" [class]="searchBoxClass">
-        <div class="">
-          <input class="form-control" type="text" placeholder="Search" (keyup)="searchValueChanged($event)">
-          <!--<span class="cancel-span">
-            <button class="btn btn-link date-clear" type="button">
-                  <i class="glyphicon glyphicon-remove "></i>
-            </button>
-          </span>-->
+        <div [class]="showSearchButtons ? 'input-group' : ''">
+          <input class="form-control" type="text" placeholder="Search" [(ngModel)]="searchVal" (keyup)="searchValueChanged($event)"  (keyup.enter)="searchButtonClicked($event)" (keyup.backspace)="searchButtonClicked($event)">
+
+          <ng-container *ngIf="showSearchButtons">
+              <span class="input-group-btn custom-search-cancle" *ngIf="searchVal" (click)="searchCancle()">
+                <button class="btn btn-default" type="button">
+                  <i class="glyphicon glyphicon-remove"></i>
+                </button>
+              </span>
+              <span class="input-group-btn" (click)="searchButtonClicked()">
+                <button class="btn btn-default" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </span>
+          </ng-container>
         </div>
       </div>
 
