@@ -1,0 +1,14 @@
+<div [class]="sortCoverClass">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand" >Sort By</span>
+      </div>
+      <ul class="nav navbar-nav">
+        <ng-container *ngFor="let sortObj of _fakeSortArray">
+          <li class=""><a>{{sortObj.name}}</a></li>
+        </ng-container>
+      </ul>
+    </div>
+  </nav>
+</div>

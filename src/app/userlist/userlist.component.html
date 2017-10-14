@@ -1,10 +1,15 @@
 
+<ngx-unite-unitesort>
+
+</ngx-unite-unitesort>
+
 <ngx-unite-list
   [data]="usersData"
   [tableHeaders] = 'usersHeaders'
   [filters] = 'userFilters'
   [searchBox] = 'true'
   (filterChanged) = 'checkFilterChanged($event)'
+  (searchButtonsClicked) = 'checkSearchVal($event)'
   table-class = 'table-bordered table'
   searchbox-class = 'col-sm-6'
   filter-class='col-sm-2'

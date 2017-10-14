@@ -45,6 +45,10 @@ export class UserlistComponent implements OnInit {
     this.loadUsers();
   }
 
+  checkSearchVal($e){
+      console.log('search update ', $e);
+  }
+
   loadUsers(pageNo? : number){
     this._fService.getUsers(pageNo).subscribe(usersData => {
       this.usersData      = usersData['data'];

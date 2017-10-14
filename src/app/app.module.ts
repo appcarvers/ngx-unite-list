@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { UniteModule } from '@appcarvers/ngx-unitelist/unite.module';
-//import { UniteModule } from './unite/unite.module';
+//import { UniteModule } from '@appcarvers/ngx-unitelist/unite.module';
+import { UniteModule } from './unite/unite.module';
 
 import { AppComponent } from './app.component';
 import { UserlistComponent } from './userlist/userlist.component';
