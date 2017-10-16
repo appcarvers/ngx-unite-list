@@ -13,6 +13,7 @@ export class UnitepaginationComponent implements OnInit {
   endPage;
   endPointStart;
   endPointEnd;
+  showPagination;
 
   @Input() currentPage: number;
   @Input() set totalPages(value){
@@ -72,6 +73,9 @@ export class UnitepaginationComponent implements OnInit {
 
   checkingFuntion()
   {
+    // one page or less so don't show
+    this.showPagination = this._totalPageCount <= 1 ? false : true;
+
     if (this._totalPageCount <= 10)
     {
         // less than 10 total pages so show all
