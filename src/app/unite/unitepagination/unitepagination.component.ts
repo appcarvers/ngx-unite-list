@@ -44,16 +44,10 @@ export class UnitepaginationComponent implements OnInit {
               thisNewPage = 1;
             break;
         case 'prev' :
-              if (this.currentPage !== 1)
-              {
-                thisNewPage = this.currentPage -1;
-              }
+              thisNewPage = !(this.currentPage <= 1) ? this.currentPage -1 : this.currentPage;
             break;
         case 'nxt' :
-              if (this.currentPage !== this._totalPageCount)
-              {
-                thisNewPage = this.currentPage + 1;
-              }
+              thisNewPage = !(this.currentPage >= this._totalPageCount) ? thisNewPage = this.currentPage + 1 : this.currentPage;
             break;
         case 'last' :
               thisNewPage = this._totalPageCount;
