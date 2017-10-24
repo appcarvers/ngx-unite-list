@@ -13,12 +13,13 @@ export class UnitepaginationComponent implements OnInit {
   endPage;
   endPointStart;
   endPointEnd;
+  showPagination;
 
   @Input() currentPage: number;
   @Input() set totalPages(value){
     this._totalPageCount = value;
     this._totalPages = Array(value).fill(1); // [0,1,2,3,4]
-    this.checkingFuntion();
+    this.setTotalPages();
   };
 
   @Output() pageChanged = new EventEmitter();
@@ -67,11 +68,14 @@ export class UnitepaginationComponent implements OnInit {
     }
 
     this.currentPage = thisNewPage;
-    this.checkingFuntion();
+    this.setTotalPages();
   }
 
-  checkingFuntion()
+  setTotalPages()
   {
+    // one page or less so don't show
+    this.showPagination = this._totalPageCount <= 1 ? false : true;
+
     if (this._totalPageCount <= 10)
     {
         // less than 10 total pages so show all

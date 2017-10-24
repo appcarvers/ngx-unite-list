@@ -1,4 +1,4 @@
-<div class="datatable-pagination" *ngIf="_totalPages.length && currentPage"> 
+<div class="datatable-pagination" *ngIf="_totalPages.length && currentPage && showPagination"> 
   <ul class="pagination pagination-sm">
       <li (click)="pageChange('first')"><span>&laquo;</span></li>
       <li (click)="pageChange('prev')"><span>&lsaquo;</span></li>
