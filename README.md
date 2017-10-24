@@ -170,6 +170,11 @@ export class UserlistComponent implements OnInit {
 ```
 
 ## Releases
+### v.0.1.8
+  - Pagination bug fixes.
+  -- https://github.com/appcarvers/ngx-unite-list/issues/1
+  -- https://github.com/appcarvers/ngx-unite-list/issues/4
+
 ### v.0.1.7
   - Added Cancel button for date filters.
 
