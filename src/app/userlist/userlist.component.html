@@ -1,7 +1,5 @@
 
-<ngx-unite-unitesort>
-
-</ngx-unite-unitesort>
+<ngx-unite-sort [sortDataArray]='userSortArray' sortCoverClass='my-sorting-class' (sortChanged)='updateSort($event)'></ngx-unite-sort>
 
 <ngx-unite-list
   [data]="usersData"

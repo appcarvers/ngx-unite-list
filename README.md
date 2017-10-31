@@ -31,6 +31,7 @@ Now, pass proper configuration so as to render pagination, filters, table-view. 
 
 user.component.html
 ```html
+<ngx-unite-sort [sortDataArray]='userSortArray' sortCoverClass='my-sorting-class' (sortChanged)='updateSort($event)'></ngx-unite-sort>
 <ngx-unite-list
     [data]="usersData"
     [tableHeaders] = 'usersHeaders'
@@ -43,6 +44,7 @@ user.component.html
     (searchInput)='jobsSearched($event)'
     table-class='table-bordered table'
     filter-class='my-col col-xs-2'
+    filter-cover-class='my-filters'
 > </ngx-unite-list>
 ```
 ### Code in component.ts
@@ -65,10 +67,18 @@ export class UserlistComponent implements OnInit {
     userTotalPages;
     userCurrentPage;
     userFilters;
+    userSortArray;
 
     constructor(private _fService : FakedataService) { }
 
     ngOnInit() {
+        this.userSortArray = [
+                            {name : 'sort-1', label : 'Sort 1 new'},
+                            {name : 'sort-2', label : 'Sort 2 new'},
+                            {name : 'sort-3', label : 'Sort 3 new'},
+                            {name : 'sort-4', label : 'Sort 4 new'},
+                          ];
+
         this.usersHeaders = [
                                 {label : "Id", identifier : ['id']},
                                 {label : "Name", identifierCombo : [['first_name'],['last_name']]},
@@ -109,6 +119,10 @@ export class UserlistComponent implements OnInit {
 
     checkFilterChanged(e){
         console.log('filter changed event captuire ', e);
+    }
+
+    updateSort(e){
+        console.log("change event ", e);
     }
 }
 
@@ -170,10 +184,15 @@ export class UserlistComponent implements OnInit {
 ```
 
 ## Releases
+### v.0.1.10
+  - Documentation for UnitSort updated
+
+### v.0.1.9
+  - UnitSort compoment to give power for sorting
+  - Flexibility to provide custom class to filter cover div 
+
 ### v.0.1.8
-  - Pagination bug fixes.
-  -- https://github.com/appcarvers/ngx-unite-list/issues/1
-  -- https://github.com/appcarvers/ngx-unite-list/issues/4
+  - Pagination bug fixes.(https://github.com/appcarvers/ngx-unite-list/issues/1, https://github.com/appcarvers/ngx-unite-list/issues/4)
 
 ### v.0.1.7
   - Added Cancel button for date filters.

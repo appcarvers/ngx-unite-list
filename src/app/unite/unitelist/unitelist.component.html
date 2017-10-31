@@ -5,7 +5,7 @@
       (pageChanged) = 'checkPageChanged($event)'
     ></ngx-unite-pagination>
 
-    <div class="filters-cover" *ngIf="_filters.length || searchBox" class="my-filters">
+    <div *ngIf="_filters.length || searchBox" [class]="filterCoverClass">
 
       <div *ngIf="searchBox" [class]="searchBoxClass">
         <div [class]="showSearchButtons ? 'input-group' : ''">

@@ -23,6 +23,7 @@ export class UnitelistComponent implements OnInit {
   @Input() pagesToShow;
   @Input('table-class') tableBlockClass     = 'table';
   @Input('filter-class') filterBlockClass   = 'my-col col-xs-3';
+  @Input('filter-cover-class') filterCoverClass = 'my-filters row';
   @Input('searchbox-class') searchBoxClass  = 'my-col col-xs-3';
   @Input() totalPages;
   @Input() set data(value){

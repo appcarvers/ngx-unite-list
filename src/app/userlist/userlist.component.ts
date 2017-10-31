@@ -14,10 +14,17 @@ export class UserlistComponent implements OnInit {
   userTotalPages;
   userCurrentPage;
   userFilters = [];
+  userSortArray;
 
   constructor(private _fService : FakedataService) { }
 
   ngOnInit() {
+    this.userSortArray = [
+                            {name : 'sort-1', label : 'Sort 1 new'},
+                            {name : 'sort-2', label : 'Sort 2 new'},
+                            {name : 'sort-3', label : 'Sort 3 new'},
+                            {name : 'sort-4', label : 'Sort 4 new'},
+                          ];
     this.usersHeaders = [
                             {label : "Id", identifier : ['id']},
                             {label : "Name", identifierCombo : [['first_name'],['last_name']]},
@@ -63,6 +70,10 @@ export class UserlistComponent implements OnInit {
     {
       this.loadUsers(e.newPage);
     }
+  }
+
+  updateSort(e){
+    console.log("change event ", e);
   }
 
   checkFilterChanged(e){

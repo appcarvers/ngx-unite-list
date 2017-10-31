@@ -1,25 +1,38 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'ngx-unite-unitesort',
+  selector: 'ngx-unite-sort',
   templateUrl: './unitesort.component.html',
   styleUrls: ['./unitesort.component.css']
 })
 export class UnitesortComponent implements OnInit {
 
-  _fakeSortArray;
   @Input() sortCoverClass;
+  @Input() sortDataArray : Array<any>;
+  @Output() sortChanged = new EventEmitter();
 
   constructor() {
-    this._fakeSortArray = [
-                            {name : 'sort-1', label : 'Sort 1', value : 'asc'},
-                            {name : 'sort-2', label : 'Sort 2'},
-                            {name : 'sort-3', label : 'Sort 3'},
-                            {name : 'sort-4', label : 'Sort 4'},
-                          ];
   }
 
   ngOnInit() {
+  }
+
+  sortValueClicked(clickedName)
+  {
+    var emitObject = {};
+
+    this.sortDataArray.forEach(element => {
+      if(element.name === clickedName)
+      {
+        element['value'] = element['value'] === 'asc' ? 'desc' : 'asc';
+        emitObject[element.name] = element.value;
+        this.sortChanged.emit(emitObject);
+      }
+      else
+      {
+        delete element['value'];
+      }
+    });
   }
 
 }
